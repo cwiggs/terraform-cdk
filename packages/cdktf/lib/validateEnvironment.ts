@@ -1,3 +1,5 @@
+// Copyright (c) HashiCorp, Inc
+// Licensed under the Mozilla Public License 2.0
 import { Construct } from "constructs";
 
 // fails early if the environment contains e.g. invalid version combinations
