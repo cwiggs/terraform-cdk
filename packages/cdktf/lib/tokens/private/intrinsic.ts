@@ -82,6 +82,9 @@ export class Intrinsic implements IResolvable {
   }
 }
 
+/**
+ * Returns true if x is a function
+ */
 function isFunction(x: any) {
   return typeof x === "function";
 }

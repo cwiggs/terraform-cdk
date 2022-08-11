@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: MPL-2.0
 import { TerraformDynamicBlock } from "./terraform-dynamic-block";
 import { Tokenization } from "./tokens/token";
+
 /**
  * Merges `source` into `target`, overriding any existing values.
  * `undefined` will cause a value to be deleted.
  */
-
 export function deepMerge(target: any, ...sources: any[]) {
   if (Tokenization.isResolvable(target) && sources.length > 0) {
     throw new Error(
@@ -60,6 +60,9 @@ export function deepMerge(target: any, ...sources: any[]) {
   return target;
 }
 
+/**
+ * Transforms a string to snake case
+ */
 export function snakeCase(str: string): string {
   if (!str) return "";
 
@@ -70,6 +73,9 @@ export function snakeCase(str: string): string {
     .toLowerCase();
 }
 
+/**
+ * Transforms all keys in a object to snake case
+ */
 export function keysToSnakeCase(object: any): any {
   if (Tokenization.isResolvable(object)) {
     return object;

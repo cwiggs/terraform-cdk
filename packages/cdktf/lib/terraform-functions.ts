@@ -13,19 +13,27 @@ type TFValueValidator = (value: any) => TFValue;
 
 type ExecutableTfFunction = (...args: any[]) => IResolvable;
 
+/**
+ * Determines if given str has unescaped double quotes
+ * @param str String to test
+ * @returns Boolean
+ */
 function hasUnescapedDoubleQuotes(str: string) {
   return /(^|[^\\])([\\]{2})*"/.test(str);
 }
 
 // Validators
+// eslint-disable-next-line jsdoc/require-jsdoc
 function anyValue(value: any): any {
   return value;
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function mapValue(value: any): any {
   return value;
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function stringValue(value: any): any {
   if (typeof value !== "string" && !Tokenization.isResolvable(value)) {
     throw new Error(`'${value}' is not a valid string nor a token`);
@@ -40,6 +48,7 @@ function stringValue(value: any): any {
   return value;
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function numericValue(value: any): any {
   if (typeof value !== "number" && !Tokenization.isResolvable(value)) {
     throw new Error(`${value} is not a valid number nor a token`);
@@ -47,6 +56,7 @@ function numericValue(value: any): any {
   return value;
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function listOf(type: TFValueValidator): TFValueValidator {
   return (value: any) => {
     if (Tokenization.isResolvable(value)) {
@@ -99,26 +109,32 @@ function listOf(type: TFValueValidator): TFValueValidator {
 }
 
 // Tokenization
+// eslint-disable-next-line jsdoc/require-jsdoc
 function asString(value: IResolvable) {
   return Token.asString(value);
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function asNumber(value: IResolvable) {
   return Token.asNumber(value);
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function asList(value: IResolvable) {
   return Token.asList(value);
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function asStringMap(value: IResolvable) {
   return Token.asStringMap(value);
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function asBoolean(value: IResolvable) {
   return value; // Booleans can not be represented as a token
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function asAny(value: IResolvable) {
   // Ordinarily casting to any can cause issues, but
   // in this case it makes using functions a bit easier in TS
@@ -128,6 +144,7 @@ function asAny(value: IResolvable) {
   return asString(value) as any;
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 function terraformFunction(
   name: string,
   argValidators: TFValueValidator | TFValueValidator[]
@@ -157,6 +174,7 @@ function terraformFunction(
   };
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 export class Fn {
   /**
    * {@link https://www.terraform.io/docs/language/functions/alltrue.html alltrue} returns true if all elements in a given collection are true or "true".

@@ -8,6 +8,7 @@ import { Expression, ref } from "./tfExpression";
 import { IResolvable } from "./tokens/resolvable";
 import { ITerraformAddressable } from "./terraform-addressable";
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 export abstract class VariableType {
   public static readonly STRING = "string";
   public static readonly NUMBER = "number";
@@ -100,6 +101,7 @@ export interface TerraformVariableConfig {
   readonly validation?: TerraformVariableValidationConfig[];
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 export class TerraformVariable
   extends TerraformElement
   implements ITerraformAddressable

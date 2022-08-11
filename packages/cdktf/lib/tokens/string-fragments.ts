@@ -19,6 +19,9 @@ type Fragment = LiteralFragment | TokenFragment | IntrinsicFragment;
  * @experimental
  */
 export class TokenizedStringFragments {
+  /**
+   * Fragments in the tokenized string
+   */
   private readonly fragments = new Array<Fragment>();
 
   /**

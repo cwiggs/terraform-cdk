@@ -8,6 +8,7 @@ import {
   DataTerraformRemoteStateConfig,
 } from "../terraform-remote-state";
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 export class PgBackend extends TerraformBackend {
   constructor(scope: Construct, private readonly props: PgBackendProps) {
     super(scope, "backend", "pg");
@@ -29,6 +30,7 @@ export class PgBackend extends TerraformBackend {
   }
 }
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 export class DataTerraformRemoteStatePg extends TerraformRemoteState {
   constructor(
     scope: Construct,
