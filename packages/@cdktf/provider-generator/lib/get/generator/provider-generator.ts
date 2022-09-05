@@ -156,14 +156,14 @@ export class TerraformProviderGenerator {
         }
         namespacedResources[namespace].push(resourceModel);
       } else if (resourceModel.structsRequireSharding) {
-        files.push(this.emitResourceFileWithComplexStruct(resourceModel));
+        files.push(this.emitResourceWithComplexStruct(resourceModel));
       } else {
-        files.push(this.emitResourceFile(resourceModel));
+        files.push(this.emitResource(resourceModel));
       }
     });
 
     for (const [, resources] of Object.entries(namespacedResources)) {
-      files.push(this.emitNamespacedResourceFile(name, resources));
+      files.push(this.emitNamespacedResource(name, resources));
     }
 
     if (provider.provider) {
@@ -178,7 +178,7 @@ export class TerraformProviderGenerator {
         providerResource.terraformProviderSource = constraint.source;
       }
       providerResource.providerVersion = providerVersion;
-      files.push(this.emitResourceFile(providerResource));
+      files.push(this.emitResource(providerResource));
     }
 
     this.emitIndexFile(name, files);
@@ -205,7 +205,7 @@ export class TerraformProviderGenerator {
     this.code.closeFile(filePath);
   }
 
-  private emitResourceFile(resource: ResourceModel): string {
+  private emitResource(resource: ResourceModel): string {
     this.code.openFile(resource.filePath);
     this.emitFileHeader(resource);
     this.structEmitter.emit(resource);
@@ -215,7 +215,7 @@ export class TerraformProviderGenerator {
     return resource.filePath;
   }
 
-  private emitNamespacedResourceFile(
+  private emitNamespacedResource(
     providerName: string,
     resources: ResourceModel[]
   ) {
@@ -293,7 +293,7 @@ export class TerraformProviderGenerator {
     return `ns:${ns.name}`;
   }
 
-  private emitResourceFileWithComplexStruct(resource: ResourceModel) {
+  private emitResourceWithComplexStruct(resource: ResourceModel) {
     const generatedFiles = [];
 
     // drop the last segment of the filepath
