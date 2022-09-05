@@ -12,4 +12,4 @@ dist
 packages/@cdktf/provider-generator/edge-provider-bindings
 test/edge-provider-bindings
 !tools/documentation-generation/generate-documentation.js
-!tools/build-example.js
+!tools/build-example/index.js
